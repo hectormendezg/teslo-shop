@@ -5,7 +5,7 @@ import { join } from 'path';
 @Injectable()
 export class FilesService {
   getStaticProductImage(imageName: string) {
-    const path = join(__dirname, '../../static/product', imageName);
+    const path = join(__dirname, '../../static/products', imageName);
     if (!existsSync(path))
       throw new BadRequestException(`No product found whit image ${imageName}`);
 

@@ -23,7 +23,7 @@ export class FilesController {
     private readonly configService: ConfigService,
   ) {}
 
-  @Get('product/:imageName')
+  @Get('products/:imageName')
   findProductImage(
     @Res() res: Response,
     @Param('imageName')
@@ -37,13 +37,13 @@ export class FilesController {
     }); */
     res.sendFile(path);
   }
-  @Post('product')
+  @Post('products')
   @UseInterceptors(
     FileInterceptor('file', {
       fileFilter: fileFilter,
       limits: { fieldSize: 2000 },
       storage: diskStorage({
-        destination: './static/product',
+        destination: './static/products',
         filename: fileNamer,
       }),
     }),
@@ -56,7 +56,7 @@ export class FilesController {
 
     //console.log(file);
     //const secureUrl = `${file.filename}`;
-    const secureUrl = `${this.configService.get('HOST_API')}/files/product/${
+    const secureUrl = `${this.configService.get('HOST_API')}/files/products/${
       file.filename
     } `;
 
