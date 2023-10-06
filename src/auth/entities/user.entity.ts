@@ -1,8 +1,10 @@
+import { Product } from 'src/products/entities/product.entity';
 import {
   BeforeInsert,
   BeforeUpdate,
   Column,
   Entity,
+  OneToMany,
   PrimaryGeneratedColumn,
 } from 'typeorm';
 
@@ -28,6 +30,10 @@ export class User {
     default: ['user'],
   })
   roles: string[];
+
+  //===> Relacion de un a muchos con productos
+  @OneToMany(() => Product, (product) => product.user)
+  product: Product;
 
   //===> Disparadores o triggers
   //Insertar correo electronico con minusculas
